@@ -1,103 +1,190 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-background flex flex-col items-center font-sans">
+      {/* Hero Banner */}
+      <section className="w-full bg-primary/20 py-16 flex flex-col items-center mb-8">
+        <h1 className="text-5xl sm:text-7xl font-extrabold text-primary mb-4 tracking-tight">
+          ステーショナリーリンク
+        </h1>
+        <p className="text-xl sm:text-2xl text-foreground max-w-2xl text-center mb-6">
+          文房具のことなら何でも揃うワンストップショップ。最高の文房具で発見・ショッピング・創造を楽しもう！
+        </p>
+        <Link
+          href="/products"
+          className="bg-primary text-white px-8 py-3 rounded-full font-bold text-lg shadow hover:bg-secondary transition"
+        >
+          商品一覧を見る
+        </Link>
+      </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Promo Banner: Special Edition */}
+      <section className="w-full max-w-5xl px-4 mb-12">
+        <div className="bg-secondary/20 rounded-xl flex flex-col md:flex-row items-center justify-between p-8 gap-8 shadow-lg">
+          <div>
+            <h2 className="text-2xl font-bold text-pink-600 mb-2">
+              75周年記念 ピーナッツ × モレスキン
+            </h2>
+            <p className="text-gray-800 mb-4">
+              チャールズ・シュルツの名作コミックとコラボした限定ノート。
+            </p>
+            <Link
+              href="/products"
+              className="text-primary font-bold underline"
+            >
+              詳しく見る
+            </Link>
+          </div>
+          <Image
+            src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80"
+            alt="Peanuts Moleskine"
+            width={180}
+            height={120}
+            className="rounded"
+          />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+      </section>
+
+      {/* Featured Products */}
+      <section className="w-full max-w-5xl px-4 mb-12">
+        <h2 className="text-2xl font-bold text-pink-600 mb-6">おすすめ商品</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {/* Product Card Example */}
+          <div className="bg-card rounded-xl shadow-lg p-6 flex flex-col items-center border border-gray-100 text-gray-900">
+            <Image
+              src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=400&q=80"
+              alt="ノート"
+              width={100}
+              height={100}
+              className="mb-4"
+            />
+            <h3 className="font-semibold text-lg mb-2">クラシックノート</h3>
+            <p className="text-gray-700 mb-2">
+              メモ、スケッチ、アイデアに最適なノートです。
+            </p>
+            <span className="text-primary font-bold text-lg">¥599</span>
+          </div>
+          <div className="bg-card rounded-xl shadow-lg p-6 flex flex-col items-center border border-gray-100 text-gray-900">
+            <Image
+              src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80"
+              alt="ペン"
+              width={100}
+              height={100}
+              className="mb-4"
+            />
+            <h3 className="font-semibold text-lg mb-2">スムースゲルペン</h3>
+            <p className="text-gray-700 mb-2">鮮やかなインクでなめらかに書けます。</p>
+            <span className="text-primary font-bold text-lg">¥249</span>
+          </div>
+          <div className="bg-card rounded-xl shadow-lg p-6 flex flex-col items-center border border-gray-100 text-gray-900">
+            <Image
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+              alt="蛍光ペン"
+              width={100}
+              height={100}
+              className="mb-4"
+            />
+            <h3 className="font-semibold text-lg mb-2">パステル蛍光ペン</h3>
+            <p className="text-gray-700 mb-2">スタイリッシュに色分けできます。</p>
+            <span className="text-primary font-bold text-lg">¥199</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Personalization Section */}
+      <section className="w-full max-w-5xl px-4 mb-12">
+        <div className="bg-info/20 rounded-xl flex flex-col md:flex-row items-center justify-between p-8 gap-8 shadow-lg text-gray-900">
+          <div>
+            <h2 className="text-2xl font-bold text-info mb-2">名入れ・パーソナライズ</h2>
+            <p className="text-gray-800 mb-4">
+              ギフトや自分用に、文房具を特別な一点に仕上げましょう。
+            </p>
+            <Link
+              href="/products"
+              className="text-info font-bold underline"
+            >
+              パーソナライズ商品を見る
+            </Link>
+          </div>
           <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+            src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80"
+            alt="Personalize"
+            width={180}
+            height={120}
+            className="rounded"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        </div>
+      </section>
+
+      {/* Loyalty Program Section */}
+      <section className="w-full max-w-5xl px-4 mb-12">
+        <div className="bg-accent/20 rounded-xl flex flex-col md:flex-row items-center justify-between p-8 gap-8 shadow-lg text-gray-900">
+          <div>
+            <h2 className="text-2xl font-bold text-yellow-600 mb-2">
+              会員プログラム「フレンズ・フォー・ライフ」
+            </h2>
+            <ul className="list-disc ml-6 text-gray-800 mb-4">
+              <li>会員限定特典</li>
+              <li>誕生日サプライズ</li>
+              <li>限定クーポン</li>
+            </ul>
+            <Link
+              href="/signup"
+              className="text-yellow-700 font-bold underline"
+            >
+              今すぐ登録
+            </Link>
+          </div>
           <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+            src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80"
+            alt="Loyalty"
+            width={180}
+            height={120}
+            className="rounded"
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        </div>
+      </section>
+
+      {/* Blog/News Section */}
+      <section className="w-full max-w-5xl px-4 mb-16">
+        <h2 className="text-2xl font-bold text-blue-600 mb-6">ミリグラムノート</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="bg-card rounded-xl shadow p-6 flex flex-col text-gray-900">
+            <span className="text-sm text-gray-400 mb-2">2025年6月13日</span>
+            <h3 className="font-semibold text-lg mb-2">
+              モレスキンとピーナッツの75周年記念
+            </h3>
+            <p className="text-gray-700 mb-4">
+              限定コラボノートの魅力を紹介します。
+            </p>
+            <Link
+              href="/blog"
+              className="text-primary font-bold underline"
+            >
+              続きを読む
+            </Link>
+          </div>
+          <div className="bg-card rounded-xl shadow p-6 flex flex-col text-gray-900">
+            <span className="text-sm text-gray-400 mb-2">2025年6月6日</span>
+            <h3 className="font-semibold text-lg mb-2">
+              スタッフおすすめ：カヴェコスポーツ
+            </h3>
+            <p className="text-gray-700 mb-4">
+              人気万年筆の使い心地をレビュー。
+            </p>
+            <Link
+              href="/blog"
+              className="text-primary font-bold underline"
+            >
+              続きを読む
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer is handled globally */}
     </div>
   );
 }
