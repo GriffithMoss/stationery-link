@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="w-full py-10 bg-card text-center text-gray-600 text-sm border-t mt-12">
+    <footer className="w-full py-10 bg-card text-center text-#f3f3f3 text-sm border-t mt-12">
       <div className="mb-4 flex flex-wrap justify-center gap-6">
         <a href="/about" className="hover:underline">会社概要</a>
         <a href="/contact" className="hover:underline">お問い合わせ</a>

@@ -6,7 +6,7 @@
   --primary: #7ec4cf;
   --secondary: #f7b2ad;
   --accent: #ffe066;
-  --card: #fff1f1;
+  --card: #dc8282;
   --info: #a3c9a8;
   --font-sans: 'Noto Sans JP', Arial, sans-serif;
 }
@@ -14,7 +14,8 @@
 /* Remove dark mode override for now to ensure readability */
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
+  @apply bg-gradient-to-br from-[#dbd0d0e9] via-[#e0e7ff] to-[#cab4b2] text-gray-900 transition-colors duration-500;
+}
+.dark body {
+  @apply bg-gradient-to-br from-[#292a2d] via-[#25252a] to-[#093d53] text-[#bcbfc7] transition-colors duration-500;
 }
