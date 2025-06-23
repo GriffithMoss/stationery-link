@@ -14,7 +14,7 @@ export default function Home() {
         </p>
         <Link
           href="/products"
-          className="bg-primary text-white px-8 py-3 rounded-full font-bold text-lg shadow hover:bg-secondary transition"
+          className="bg-white text-primary px-8 py-3 rounded-full font-bold text-lg shadow hover:bg-secondary hover:text-white transition"
         >
           商品一覧を見る
         </Link>
