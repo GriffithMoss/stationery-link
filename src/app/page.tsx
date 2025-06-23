@@ -1,5 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import { products } from "../lib/products"; // products-г импортлоно
+
+// Жишээ: products array-аас эхний 3 барааг харуулах
+const featured = products.slice(0, 3);
 
 export default function Home() {
   return (
@@ -52,44 +56,22 @@ export default function Home() {
         <h2 className="text-2xl font-bold text-pink-600 mb-6">おすすめ商品</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {/* Product Card Example */}
-          <div className="bg-card rounded-xl shadow-lg p-6 flex flex-col items-center border border-gray-100 text-gray-900">
-            <Image
-              src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=400&q=80"
-              alt="ノート"
-              width={100}
-              height={100}
-              className="mb-4"
-            />
-            <h3 className="font-semibold text-lg mb-2">クラシックノート</h3>
-            <p className="text-gray-700 mb-2">
-              メモ、スケッチ、アイデアに最適なノートです。
-            </p>
-            <span className="text-primary font-bold text-lg">¥599</span>
-          </div>
-          <div className="bg-card rounded-xl shadow-lg p-6 flex flex-col items-center border border-gray-100 text-gray-900">
-            <Image
-              src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80"
-              alt="ペン"
-              width={100}
-              height={100}
-              className="mb-4"
-            />
-            <h3 className="font-semibold text-lg mb-2">スムースゲルペン</h3>
-            <p className="text-gray-700 mb-2">鮮やかなインクでなめらかに書けます。</p>
-            <span className="text-primary font-bold text-lg">¥249</span>
-          </div>
-          <div className="bg-card rounded-xl shadow-lg p-6 flex flex-col items-center border border-gray-100 text-gray-900">
-            <Image
-              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
-              alt="蛍光ペン"
-              width={100}
-              height={100}
-              className="mb-4"
-            />
-            <h3 className="font-semibold text-lg mb-2">パステル蛍光ペン</h3>
-            <p className="text-gray-700 mb-2">スタイリッシュに色分けできます。</p>
-            <span className="text-primary font-bold text-lg">¥199</span>
-          </div>
+          {featured.map((product) => (
+            <div key={product.id} className="bg-card rounded-xl shadow-lg p-6 flex flex-col items-center border border-gray-100 text-gray-900">
+              <Image
+                src={product.image}
+                alt={product.name}
+                width={100}
+                height={100}
+                className="mb-4"
+              />
+              <h3 className="font-semibold text-lg mb-2">{product.name}</h3>
+              <p className="text-gray-700 mb-2">
+                メモ、スケッチ、アイデアに最適なノートです。
+              </p>
+              <span className="text-primary font-bold text-lg">¥{product.price}</span>
+            </div>
+          ))}
         </div>
       </section>
 

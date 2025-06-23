@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
+
 const allCategories = Array.from(new Set(products.map((p) => p.category)));
 const allBrands = Array.from(new Set(products.map((p) => p.brand).filter(Boolean)));
 const allTags = Array.from(new Set(products.flatMap((p) => p.tags || [])));
