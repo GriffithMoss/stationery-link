@@ -51,7 +51,7 @@ export default function ProductsPage() {
   return (
     <PageTransition>
       <div className="max-w-6xl mx-auto px-4 py-12 text-gray-900 dark:text-gray-100">
-        <h1 className="text-3xl font-bold mb-8 text-blue-700 dark:text-blue-200">商品一覧</h1>
+        <h1 className="text-3xl font-bold mb-8 text-blue-700 dark:text-blue-700">商品一覧</h1>
         <div className="flex flex-col md:flex-row gap-6 mb-8 bg-white/90 dark:bg-[#23243a]/90 p-4 rounded shadow transition-colors duration-500">
           <form className="flex flex-wrap gap-4 items-end flex-1">
             <div>
@@ -105,8 +105,8 @@ export default function ProductsPage() {
                 <option key={opt.value} value={opt.value}>{opt.label}</option>
               ))}
             </select>
-            <button type="button" className={`px-3 py-1 rounded ${view === "grid" ? "bg-primary text-blue-700" : "bg-gray-200"}`} onClick={() => setView("grid")}>グリッド</button>
-            <button type="button" className={`px-3 py-1 rounded ${view === "list" ? "bg-primary text-blue-700" : "bg-gray-200"}`} onClick={() => setView("list")}>リスト</button>
+            <button type="button" className={`px-3 py-1 rounded ${view === "grid" ? "bg-primary text-blue-700" : "border-gray-200"}`} onClick={() => setView("grid")}>グリッド</button>
+            <button type="button" className={`px-3 py-1 rounded ${view === "list" ? "bg-primary text-blue-700" : "border-gray-200"}`} onClick={() => setView("list")}>リスト</button>
           </div>
         </div>
         {filtered.length === 0 ? (
