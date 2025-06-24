@@ -48,7 +48,7 @@ export default function ProductsPage() {
   if (sort === "stock") filtered = [...filtered].sort((a, b) => (b.stock || 0) - (a.stock || 0));
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-12">
+    <div className="max-w-6xl mx-auto px-4 py-12 text-blue-700 dark:text-blue-700">
       <h1 className="text-3xl font-bold mb-8 text-blue-700">商品一覧</h1>
       <div className="flex flex-col md:flex-row gap-6 mb-8 bg-background/90 p-4 rounded shadow">
         <form className="flex flex-wrap gap-4 items-end flex-1">
@@ -103,27 +103,27 @@ export default function ProductsPage() {
               <option key={opt.value} value={opt.value}>{opt.label}</option>
             ))}
           </select>
-          <button type="button" className={`px-3 py-1 rounded ${view === "grid" ? "bg-primary text-white" : "bg-gray-200"}`} onClick={() => setView("grid")}>グリッド</button>
-          <button type="button" className={`px-3 py-1 rounded ${view === "list" ? "bg-primary text-white" : "bg-gray-200"}`} onClick={() => setView("list")}>リスト</button>
+          <button type="button" className={`px-3 py-1 rounded ${view === "grid" ? "bg-primary text-blue-700" : "bg-gray-200"}`} onClick={() => setView("grid")}>グリッド</button>
+          <button type="button" className={`px-3 py-1 rounded ${view === "list" ? "bg-primary text-blue-700" : "bg-gray-200"}`} onClick={() => setView("list")}>リスト</button>
         </div>
       </div>
       {filtered.length === 0 ? (
-        <div className="text-center text-gray-500 py-20 text-lg">該当する商品がありません。</div>
+        <div className="text-center text-blue-700 py-20 text-lg">該当する商品がありません。</div>
       ) : view === "grid" ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {filtered.map((product) => (
             <Link
               key={product.id}
               href={`/products/${product.id}`}
-              className="bg-card rounded-lg shadow p-6 flex flex-col items-center hover:scale-105 transition-transform border border-gray-100 text-gray-900 relative"
+              className="bg-card rounded-lg shadow p-6 flex flex-col items-center hover:scale-105 transition-transform border border-[#ebe3e3] text-[#7a74c9] relative"
             >
               <Image src={product.image} alt={product.name} width={120} height={120} className="mb-4" />
               <h2 className="font-semibold text-lg mb-2">{product.name}</h2>
-              <p className="text-gray-600 mb-2 text-center">{product.description}</p>
+              <p className="text-gray-600 dark:text-blue-700 mb-2 text-center">{product.description}</p>
               <span className="text-blue-700 font-bold">¥{product.price.toLocaleString()}</span>
               {product.isNew && <span className="absolute top-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded">新商品</span>}
               {product.isSale && <span className="absolute top-2 right-2 bg-pink-500 text-white text-xs px-2 py-1 rounded">セール</span>}
-              {product.brand && <span className="mt-2 text-xs text-gray-500">ブランド: {product.brand}</span>}
+              {product.brand && <span className="mt-2 text-xs text-blue-700">ブランド: {product.brand}</span>}
               {product.tags && (
                 <div className="flex flex-wrap gap-1 mt-2">
                   {product.tags.map((tag) => (
@@ -132,7 +132,7 @@ export default function ProductsPage() {
                 </div>
               )}
               {typeof product.stock === "number" && (
-                <span className="mt-2 text-xs text-gray-500">在庫: {product.stock}</span>
+                <span className="mt-2 text-xs text-[#f02290]">在庫: {product.stock}</span>
               )}
             </Link>
           ))}
@@ -149,13 +149,13 @@ export default function ProductsPage() {
               <div className="flex-1">
                 <h2 className="font-semibold text-lg mb-1">{product.name}</h2>
                 <p className="text-gray-600 mb-1">{product.description}</p>
-                <span className="text-blue-700 font-bold">¥{product.price.toLocaleString()}</span>
-                {product.brand && <span className="ml-4 text-xs text-gray-500">ブランド: {product.brand}</span>}
-                {typeof product.stock === "number" && <span className="ml-4 text-xs text-gray-500">在庫: {product.stock}</span>}
+                <span className="text-[#3330ed] font-bold">¥{product.price.toLocaleString()}</span>
+                {product.brand && <span className="ml-4 text-xs text-[#3330ed]">ブランド: {product.brand}</span>}
+                {typeof product.stock === "number" && <span className="ml-4 text-xs text-[#3330ed]">在庫: {product.stock}</span>}
                 {product.tags && (
                   <div className="flex flex-wrap gap-1 mt-1">
                     {product.tags.map((tag) => (
-                      <span key={tag} className="bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full text-xs">{tag}</span>
+                      <span key={tag} className="bg-blue-100 text-[#3330ed] px-2 py-0.5 rounded-full text-xs">{tag}</span>
                     ))}
                   </div>
                 )}

@@ -1,34 +1,30 @@
 import Image from "next/image";
 import Link from "next/link";
+import AnimatedProductList from "@/components/AnimatedProductList";
 import { products } from "../lib/products"; // products-г импортлоно
+import HeroSection from "../components/HeroSection";
 
 // Жишээ: products array-аас эхний 3 барааг харуулах
 const featured = products.slice(0, 3);
 
+// 商品リスト
+const allProducts = [
+  { id: 1, name: "JETSTREAM", image: "/JETSTREAM PRIMEシリーズ.jpg" },
+  { id: 2, name: "JETSTREAM 2", image: "/JETSTREAM 2.jpg" },
+  { id: 3, name: "JETSTREAM 3", image: "/JETSTREAM 3.jpg" },
+  { id: 4, name: "JETSTREAM 4", image: "/JETSTREAM 4.jpg" },
+  // ... 他の商品
+];
+
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center font-sans">
-      {/* Hero Banner */}
-      <section className="w-full bg-primary/20 py-16 flex flex-col items-center mb-8">
-        <h1 className="text-5xl sm:text-7xl font-extrabold text-primary mb-4 tracking-tight">
-          ステーショナリーリンク
-        </h1>
-        <p className="text-xl sm:text-2xl text-foreground max-w-2xl text-center mb-6">
-          文房具のことなら何でも揃うワンストップショップ。最高の文房具で発見・ショッピング・創造を楽しもう！
-        </p>
-        <Link
-          href="/products"
-          className="bg-blue text-#f3f3f3 px-8 py-3 rounded-full font-bold text-lg shadow hover:bg-secondary hover:text-white transition"
-        >
-          商品一覧を見る
-        </Link>
-      </section>
-
+    <div className="min-h-screen flex flex-col items-center font-sans">
+      <HeroSection />
       {/* Promo Banner: Special Edition */}
       <section className="w-full max-w-5xl px-4 mb-12">
         <div className="bg-secondary/20 rounded-xl flex flex-col md:flex-row items-center justify-between p-8 gap-8 shadow-lg">
           <div>
-            <h2 className="text-2xl font-bold text-pink-600 mb-2">
+            <h2 className="text-2xl font-bold text-blue-600 mb-2">
               75周年記念 ピーナッツ × モレスキン
             </h2>
             <p className="text-#f3f3f3 mb-4">
@@ -53,11 +49,14 @@ export default function Home() {
 
       {/* Featured Products */}
       <section className="w-full max-w-5xl px-4 mb-12">
-        <h2 className="text-2xl font-bold text-pink-600 mb-6">おすすめ商品</h2>
+        <h2 className="text-2xl font-bold text-blue-600 mb-6">おすすめ商品</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {/* Product Card Example */}
           {featured.map((product) => (
-            <div key={product.id} className="bg-card rounded-xl shadow-lg p-6 flex flex-col items-center border border-blue-600  text-#f3f3f3">
+            <Link
+              key={product.id}
+              href={`/products/${product.id}`}
+              className="bg-card rounded-xl shadow-lg p-6 flex flex-col items-center border border-blue-600 text-#f3f3f3 hover:shadow-xl transition cursor-pointer"
+            >
               <Image
                 src={product.image}
                 alt={product.name}
@@ -70,7 +69,7 @@ export default function Home() {
                 メモ、スケッチ、アイデアに最適なノートです。
               </p>
               <span className="text-primary font-bold text-lg">¥{product.price}</span>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
@@ -80,7 +79,7 @@ export default function Home() {
         <div className="bg-info/20 rounded-xl flex flex-col md:flex-row items-center justify-between p-8 gap-8 shadow-lg text-#f3f3f3">
           <div>
             <h2 className="text-2xl font-bold text-info mb-2">名入れ・パーソナライズ</h2>
-            <p className="text-#f3f3f3 mb-4">
+            <p className="text-blue-600 mb-4">
               ギフトや自分用に、文房具を特別な一点に仕上げましょう。
             </p>
             <Link
@@ -104,7 +103,7 @@ export default function Home() {
       <section className="w-full max-w-5xl px-4 mb-12">
         <div className="bg-accent/20 rounded-xl flex flex-col md:flex-row items-center justify-between p-8 gap-8 shadow-lg text-gray-900">
           <div>
-            <h2 className="text-2xl font-bold text-yellow-600 mb-2">
+            <h2 className="text-2xl font-bold text-blue-600 mb-2">
               会員プログラム「フレンズ・フォー・ライフ」
             </h2>
             <ul className="list-disc ml-6 text-gray-800 mb-4">
@@ -114,7 +113,7 @@ export default function Home() {
             </ul>
             <Link
               href="/signup"
-              className="text-yellow-700 font-bold underline"
+              className="text-blue-600 font-bold underline"
             >
               今すぐ登録
             </Link>
@@ -153,7 +152,7 @@ export default function Home() {
             <h3 className="font-semibold text-lg mb-2">
               スタッフおすすめ：カヴェコスポーツ
             </h3>
-            <p className="text-#f3f3f3mb-4">
+            <p className="text-#f3f3f3 mb-4">
               人気万年筆の使い心地をレビュー。
             </p>
             <Link
@@ -164,6 +163,12 @@ export default function Home() {
             </Link>
           </div>
         </div>
+      </section>
+
+      {/* New Products Section */}
+      <section className="w-full max-w-5xl px-4 mb-16">
+        <h2 className="text-2xl font-bold text-green-600 mb-6">新着商品</h2>
+        <AnimatedProductList products={allProducts} />
       </section>
 
       {/* Footer is handled globally */}

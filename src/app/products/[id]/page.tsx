@@ -5,8 +5,9 @@ import { notFound } from "next/navigation";
 import { useCart } from "../../../lib/cart-context";
 
 export default function ProductDetail({ params }: { params: { id: string } }) {
+  const { id } = params; // ← use() хэрэглэхгүй!
   const { addToCart } = useCart();
-  const product = products.find((p) => p.id === params.id);
+  const product = products.find((p) => p.id === id);
   if (!product) return notFound();
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">

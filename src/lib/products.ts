@@ -326,4 +326,16 @@ export const products: Product[] = [
     stock: 180,
     isNew: true,
   },
+  {
+    id: "pencil-2",
+    name: "JETSTREAM",
+    description: "なめらかな書き心地と高級感を兼ね備えた、ジェットストリームの最上位モデル。ビジネスシーンやギフトに最適です。",
+    price:  3300,
+    image: "https://www.nichima.co.jp/data/photo/new_item/1044519267.jpg",
+    category: "筆記具",
+    tags: ["ボールペン", "高級", "新商品", "滑らか", "多機能"],
+    brand: "三菱鉛筆",
+    stock: 45,
+    isNew: true,
+  },
 ];
