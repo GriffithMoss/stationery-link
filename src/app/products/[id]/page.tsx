@@ -1,14 +1,50 @@
-"use client";
-import { products } from "../../../lib/products";
+"use client"; // This MUST be the very first line
+
+import { use, useState, useEffect } from "react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { useCart } from "../../../lib/cart-context";
+import { Product } from "../../../lib/products";
 
-export default function ProductDetail({ params }: { params: { id: string } }) {
-  const { id } = params; // ← use() хэрэглэхгүй!
+export default function ProductDetail({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params);
   const { addToCart } = useCart();
-  const product = products.find((p) => p.id === id);
-  if (!product) return notFound();
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!id) return;
+
+    async function fetchProduct() {
+      try {
+        setLoading(true);
+        const res = await fetch(`/api/products/${id}`);
+
+        if (!res.ok) {
+          notFound();
+          return;
+        }
+        
+        const data = await res.json();
+        setProduct(data);
+      } catch (error) {
+        console.error("Failed to fetch product:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchProduct();
+  }, [id]);
+
+  if (loading) {
+    return <div className="text-center py-12">Loading Product...</div>;
+  }
+
+  if (!product) {
+    return notFound();
+  }
+
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">
       <div className="flex flex-col md:flex-row gap-8 items-center">

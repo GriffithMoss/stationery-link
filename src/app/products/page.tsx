@@ -1,15 +1,17 @@
 "use client";
-import { products } from "../../lib/products";
+import { useState, useEffect } from "react"; // Import useEffect
+import { Product } from "../../lib/products"; // We still need the type
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
 import { motion } from "framer-motion";
 import PageTransition from "@/components/PageTransition";
 
-const allCategories = Array.from(new Set(products.map((p) => p.category)));
-const allBrands = Array.from(new Set(products.map((p) => p.brand).filter(Boolean)));
-const allTags = Array.from(new Set(products.flatMap((p) => p.tags || [])));
+// The hardcoded products are no longer needed here.
+// const allCategories = ...
+// const allBrands = ...
+// const allTags = ...
+
 const sortOptions = [
   { value: "", label: "おすすめ順" },
   { value: "price-asc", label: "価格が安い順" },
@@ -19,6 +21,9 @@ const sortOptions = [
 ];
 
 export default function ProductsPage() {
+  const [products, setProducts] = useState<Product[]>([]); // State for products
+  const [loading, setLoading] = useState(true); // State for loading status
+
   const searchParams = useSearchParams();
   const search = searchParams.get("search")?.toLowerCase() || "";
   const [category, setCategory] = useState("");
@@ -30,6 +35,28 @@ export default function ProductsPage() {
   const [showSale, setShowSale] = useState(false);
   const [sort, setSort] = useState("");
   const [view, setView] = useState<"grid" | "list">("grid");
+
+  // Fetch products from the API
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        setLoading(true);
+        const res = await fetch("/api/products");
+        const data = await res.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchProducts();
+  }, []);
+
+  // Derived states should be calculated after products are fetched
+  const allCategories = Array.from(new Set(products.map((p) => p.category)));
+  const allBrands = Array.from(new Set(products.map((p) => p.brand).filter(Boolean)));
+  const allTags = Array.from(new Set(products.flatMap((p) => p.tags || [])));
 
   let filtered = products.filter(
     (p) =>
@@ -47,6 +74,15 @@ export default function ProductsPage() {
   if (sort === "price-desc") filtered = [...filtered].sort((a, b) => b.price - a.price);
   if (sort === "name") filtered = [...filtered].sort((a, b) => a.name.localeCompare(b.name, "ja"));
   if (sort === "stock") filtered = [...filtered].sort((a, b) => (b.stock || 0) - (a.stock || 0));
+
+  // Show a loading message while fetching data
+  if (loading) {
+    return (
+      <div className="max-w-6xl mx-auto px-4 py-12 text-center text-lg">
+        Loading products...
+      </div>
+    );
+  }
 
   return (
     <PageTransition>
